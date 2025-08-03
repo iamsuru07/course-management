@@ -4,6 +4,7 @@ import com.courseManagement.enums.RoleEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
+@ToString
 @Table(name = "user_account")
 public class UserAccountEntity {
 
@@ -21,8 +23,8 @@ public class UserAccountEntity {
     private int userId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private RoleEnum role = RoleEnum.USER;
+    @Column(name = "role")
+    private RoleEnum role;
 
     @Column(name = "first_name", length = 20, nullable = false)
     private String firstName;
@@ -33,16 +35,15 @@ public class UserAccountEntity {
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
+    @ToString.Exclude
     @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "created_at")
-//    @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createdAt;
 
     @Column(name = "updated_at")
-//    @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAt;
 }

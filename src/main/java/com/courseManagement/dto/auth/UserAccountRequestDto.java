@@ -20,7 +20,7 @@ public class UserAccountRequestDto {
     @NotBlank(message = "email is required")
     private String email;
 
-    private RoleEnum role;
+    private RoleEnum role = RoleEnum.USER;
 
     @NotBlank(message = "password is required")
     @Size(min = 6, message = "password minimum length should be 6")
