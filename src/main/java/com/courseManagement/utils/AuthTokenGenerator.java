@@ -28,14 +28,14 @@ public class AuthTokenGenerator {
                 .compact();
     }
 
-    public boolean verifyAuthToken(String token) {
+    public int verifyAuthToken(String token) {
         try {
             Claims claims = Jwts.parserBuilder()
                     .setSigningKey(secretKey)
                     .build()
                     .parseClaimsJws(token)
                     .getBody();
-            return true;
+            return Integer.parseInt(claims.getId());
         } catch (ExpiredJwtException e) {
             System.out.println("Token expired: " + e.getMessage());
         } catch (SignatureException e) {
@@ -43,6 +43,6 @@ public class AuthTokenGenerator {
         } catch (Exception e) {
             System.out.println("Invalid token: " + e.getMessage());
         }
-        return false;
+        return -1;
     }
 }
