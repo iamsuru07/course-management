@@ -63,7 +63,7 @@ public class CourseController {
                 .body(ApiResponse.success("Course updated successfully"));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<String>> deleteCourse(@PathVariable("id") int id) {
         logger.debug("Request received for deleting course for courseId {}", id);
         courseService.deleteCourseData(id);
